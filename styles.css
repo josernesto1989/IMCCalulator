@@ -34,11 +34,14 @@ input {
     width: 200px;
 }
 button {
-    padding: 5px 10px;
+    padding: 5px 15 px;
     background-color: #28a745;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 25px;
+    height: 50px;
+    font-size: large;
 }
 button:hover {
     background-color: #218838;
@@ -91,14 +94,31 @@ button:hover {
     rgba(0, 255, 0, 0.9),
     rgba(255, 0, 0, 0.9)
 );
+    border-radius: 10px;
 }
 
 .scale-pointer {
   width: 20px;
   height: 15px;
-  background-color: rgba(200, 200, 200, 0.8);
+  background-color: rgba(80, 80, 80, 0.8);
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   rotate: 180deg;
   margin-bottom: -10px;
   margin-left: -10px;
+  transition: margin 700ms
+}
+#result {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: pre-line;
+    text-align: center;
+}
+.result-container {
+   
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: ease-in 0.5s;
 }

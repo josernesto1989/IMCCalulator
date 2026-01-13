@@ -3,7 +3,6 @@ let heightMultiply = {
     'cm': 100,
 }
 
-console.log('tet');
 let heightUnit = 'meter';
 
 let heightChange = function() {
@@ -28,11 +27,11 @@ document.getElementById('imcForm').addEventListener('submit', function(event) {
             const height = parseFloat(document.getElementById('height').value);
             const divisor = heightMultiply[heightUnit];
             const imc = weight / (height * height/(divisor*divisor));
-            document.getElementById('result').innerText = `Tu IMC es: ${imc.toFixed(2)}`;
+            document.getElementById('result').innerText = `Tu IMC es: ${imc.toFixed(2)}\n ${getTextResult(imc)}`;
             document.getElementById('result-container').removeAttribute('hidden');
-            console.log(`aca IMC: ${imc}`);
-            document.getElementById('scale-pointer').style.marginLeft=(`${(imc-16) * 10-10}px`); 
-            console.log(`aca IMC fin: ${imc}`);           
+            let margin= Math.max(0,Math.min(39.5-16,(imc-16)) * 10-10)
+            document.getElementById('scale-pointer').style.marginLeft=(`${margin}px`); 
+                      //100/1.59*1.59=
         });
 
         const slider = document.querySelector('.slider');
@@ -51,4 +50,33 @@ options.forEach((option, index) => {
 
 function updateSlider() {
   slider.style.transform = `translateX(${selectedIndex * 100}px)`;
+}
+
+function getTextResult(value) {
+    let result = '';
+    if(value < 16.0) {
+        result = 'Bajo peso\nsevero';
+    }
+    else if(value < 17.0) {
+        result = 'Bajo peso\nmoderado';
+    }
+    else if(value < 18.5) {
+        result = 'Bajo peso\nleve';
+    }
+    else if(value < 25.0) {
+        result = 'Peso normal';
+    }
+    else if(value < 30.0) {
+        result = 'Sobrepeso';
+    }
+    else if(value < 35.0) {
+        result = 'Obesidad\ngrado I';
+    }
+    else if(value < 40.0) {
+        result = 'Obesidad\ngrado II';
+    }
+    else {
+        result = 'Obesidad\ngrado III';
+    }
+    return result;
 }
